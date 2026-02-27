@@ -10,4 +10,3 @@ node --eval "
     } else {
         fs.writeFileSync(filePath, JSON.stringify({ hasCompletedOnboarding: true }), 'utf-8');
     }"
-  
