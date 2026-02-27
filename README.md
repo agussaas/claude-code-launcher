@@ -54,6 +54,25 @@ MODELS=(
 )
 ```
 
+## Defaults
+
+When you select **"Use defaults"** in the launcher, it skips the step-by-step setup and uses these default values:
+
+| Variable | Value | Description |
+|----------|-------|-------------|
+| `DEFAULT_URL=1` | First entry in `BASE_URLS` | Kimi Code API |
+| `DEFAULT_KEY=1` | First entry in `API_KEYS` | Kimi |
+| `DEFAULT_MODEL=1` | First matching model in `MODELS` | kimi-k2.5 |
+
+Change these numbers to select different defaults (e.g., `DEFAULT_URL=2` for Moonshot):
+
+```bash
+# Defaults
+DEFAULT_URL=1 # https://api.kimi.com/coding
+DEFAULT_KEY=1 # sk-kimi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+DEFAULT_MODEL=1 # kimi-k2.5
+```
+
 ## Files
 
 | File | Description |
