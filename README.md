@@ -22,8 +22,37 @@ claude-code-launcher.sh
 
 - Interactive profile selection (Kimi, Moonshot, OpenRouter)
 - Quick default mode or step-by-step setup
-- Automatic API key and model configuration
+- Predefined API profiles
 - Runs `claude-code-init.sh` before launch to skip onboarding
+
+## Configuration
+
+**Important:** Before using, edit the predefined profiles in `~/.local/bin/claude-code-launcher.sh`. You can customize the base URLs, API keys, and models:
+
+```bash
+# Base URLs
+BASE_URLS=(
+  "Kimi Code API:kimi:https://api.kimi.com/coding"
+  "Moonshot API:moonshot:https://api.moonshot.ai/anthropic"
+  "OpenRouter:openrouter:https://openrouter.ai/api"
+)
+
+# API Keys
+API_KEYS=(
+  "Kimi:sk-kimi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  "Moonshot:sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  "OpenRouter:sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+)
+
+# Models
+MODELS=(
+  "kimi:kimi-k2.5"
+  "moonshot:kimi-k2.5"
+  "openrouter:moonshotai/kimi-k2.5"
+  "openrouter:minimax/minimax-m2.5"
+  "openrouter:z-ai/glm-5"
+)
+```
 
 ## Files
 
@@ -37,4 +66,4 @@ claude-code-launcher.sh
 
 - Bash
 - Node.js (for init script)
-- `claude` CLI installed
+- Claude Code installed
