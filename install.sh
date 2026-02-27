@@ -9,7 +9,9 @@ REPO_URL="https://github.com/agussaas/claude-code-launcher"
 INSTALL_DIR="$HOME/.local/bin"
 LAUNCHER_NAME="claude-code-launcher.sh"
 
-# Colors
+# ───────
+#  Colors
+# ───────
 BOLD="\033[1m"
 CYAN="\033[1;36m"
 GREEN="\033[1;32m"
@@ -38,7 +40,9 @@ if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
     echo -e "  ${BOLD}export PATH=\"\$HOME/.local/bin:\$PATH\"${RESET}\n"
 fi
 
-# Determine how we were called to find the source files
+# ───────────────
+#  Source Scripts
+# ───────────────
 if [ -n "$BASH_SOURCE" ] && [ -f "$BASH_SOURCE" ]; then
     # Running from local file
     SCRIPT_DIR="$(cd "$(dirname "$BASH_SOURCE")" && pwd)"
@@ -61,7 +65,9 @@ else
     SRC_DIR="$TMP_DIR"
 fi
 
-# Step 1: Run init script first
+# ────────────
+#  Init Script
+# ────────────
 echo -e "${CYAN}[1/3] Running initialization...${RESET}"
 if [ -f "$SRC_DIR/claude-code-init.sh" ]; then
     bash "$SRC_DIR/claude-code-init.sh"
@@ -70,7 +76,9 @@ else
     echo -e "  ${YELLOW}⚠ Init script not found, skipping${RESET}"
 fi
 
-# Step 2: Install launcher script
+# ───────────────
+#  Install Script
+# ───────────────
 echo -e "\n${CYAN}[2/3] Installing launcher to $INSTALL_DIR...${RESET}"
 if [ -f "$SRC_DIR/claude-code-launcher.sh" ]; then
     cp "$SRC_DIR/claude-code-launcher.sh" "$INSTALL_DIR/$LAUNCHER_NAME"
@@ -81,7 +89,9 @@ else
     exit 1
 fi
 
-# Step 3: Verify
+# ───────
+#  Verify
+# ───────
 echo -e "\n${CYAN}[3/3] Verifying installation...${RESET}"
 if [ -x "$INSTALL_DIR/$LAUNCHER_NAME" ]; then
     echo -e "  ${GREEN}✓ Installation successful!${RESET}"
@@ -90,7 +100,9 @@ else
     exit 1
 fi
 
-# Create symlink without .sh so both commands work
+# ────────
+#  Symlink
+# ────────
 if [ ! -e "$INSTALL_DIR/claude-code-launcher" ]; then
     if ln -sf "$INSTALL_DIR/$LAUNCHER_NAME" "$INSTALL_DIR/claude-code-launcher" 2>/dev/null; then
         echo -e "  ${GREEN}✓ Created symlink: claude-code-launcher${RESET}"
@@ -103,7 +115,9 @@ echo -e "\nYou can now run either:"
 echo -e "  ${BOLD}claude-code-launcher${RESET}"
 echo -e "  ${BOLD}claude-code-launcher.sh${RESET}"
 
-# Check PATH again
+# ─────
+#  PATH
+# ─────
 if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
     echo -e "\n${YELLOW}Remember to add $INSTALL_DIR to your PATH:${RESET}"
     echo -e "  ${BOLD}export PATH=\"\$HOME/.local/bin:\$PATH\"${RESET}"
