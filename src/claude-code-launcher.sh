@@ -6,33 +6,54 @@
 
 # Base URLs
 BASE_URLS=(
+  "Zhipu AI:zai:https://api.z.ai/api/anthropic"
   "Kimi Code API:kimi:https://api.kimi.com/coding"
   "Moonshot API:moonshot:https://api.moonshot.ai/anthropic"
+  "MiniMax:minimax:https://api.minimax.io/anthropic"
+  "Alibaba Cloud:alibaba:https://coding-intl.dashscope.aliyuncs.com/apps/anthropic"
   "OpenRouter:openrouter:https://openrouter.ai/api"
+  "Synthetic:synthetic:https://api.synthetic.new/anthropic"
 )
 
 # API Keys
 API_KEYS=(
-  "Kimi:sk-kimi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  "Moonshot:sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  "OpenRouter:sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  "Zhipu AI:<YOUR_API_KEY>"
+  "Kimi Code:<YOUR_API_KEY>"
+  "Moonshot:<YOUR_API_KEY>"
+  "MiniMax:<YOUR_API_KEY>"
+  "Alibaba Cloud:<YOUR_API_KEY>"
+  "OpenRouter:<YOUR_API_KEY>"
+  "Synthetic:<YOUR_API_KEY>"
 )
 
 # Models
 MODELS=(
+  "zai:glm-5"
   "kimi:kimi-k2.5"
   "moonshot:kimi-k2.5"
+  "minimax:MiniMax-M2.5"
+  "alibaba:glm-5"
+  "alibaba:kimi-k2.5"
+  "alibaba:MiniMax-M2.5"
+  "alibaba:qwen3.5-plus"
+  "openrouter:z-ai/glm-5"
   "openrouter:moonshotai/kimi-k2.5"
   "openrouter:minimax/minimax-m2.5"
-  "openrouter:z-ai/glm-5"
+  "openrouter:qwen/qwen3.5-plus-02-15"
+  "openrouter:deepseek/deepseek-v3.2"
+  "synthetic:hf:zai-org/GLM-4.7"
+  "synthetic:hf:MiniMaxAI/MiniMax-M2.5"
+  "synthetic:hf:moonshotai/Kimi-K2.5"
+  "synthetic:hf:Qwen/Qwen3.5-397B-A17B"
+  "synthetic:hf:deepseek-ai/DeepSeek-V3.2"
 )
 
 # ─────────
 #  Defaults
 # ─────────
-DEFAULT_URL=1 # https://api.kimi.com/coding
-DEFAULT_KEY=1 # sk-kimi-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-DEFAULT_MODEL=1 # kimi-k2.5
+DEFAULT_URL=1
+DEFAULT_KEY=1
+DEFAULT_MODEL=1
 
 # ────────
 #  Helpers
@@ -195,16 +216,20 @@ fi
 # ────────────────
 export ANTHROPIC_BASE_URL="$BASE_URL"
 export ANTHROPIC_MODEL="$MODEL"
+export ANTHROPIC_SMALL_FAST_MODEL="$MODEL"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="$MODEL"
 export ANTHROPIC_DEFAULT_SONNET_MODEL="$MODEL"
 export ANTHROPIC_DEFAULT_HAIKU_MODEL="$MODEL"
 export CLAUDE_CODE_SUBAGENT_MODEL="$MODEL"
 
-if [[ "$PROVIDER" == "openrouter" ]]; then
+if [[ "$PROVIDER" == "openrouter" || "$PROVIDER" == "zai" || "$PROVIDER" == "minimax" || "$PROVIDER" == "alibaba" || "$PROVIDER" == "synthetic" ]]; then
   export ANTHROPIC_AUTH_TOKEN="$API_KEY"
   export ANTHROPIC_API_KEY="" # Important: Must be explicitly empty
 else
   export ANTHROPIC_API_KEY="$API_KEY"
 fi
+
+export API_TIMEOUT_MS="3000000"
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 
 claude
