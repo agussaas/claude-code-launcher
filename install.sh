@@ -100,19 +100,9 @@ else
     exit 1
 fi
 
-# ────────
-#  Symlink
-# ────────
-if [ ! -e "$INSTALL_DIR/claude-code-launcher" ]; then
-    if ln -sf "$INSTALL_DIR/$LAUNCHER_NAME" "$INSTALL_DIR/claude-code-launcher" 2>/dev/null; then
-        echo -e "  ${GREEN}✓ Created symlink: claude-code-launcher${RESET}"
-    fi
-fi
-
 # Final message
 echo -e "\n${GREEN}${BOLD}Installation Complete!${RESET}"
-echo -e "\nYou can now run either:"
-echo -e "  ${BOLD}claude-code-launcher${RESET}"
+echo -e "\nYou can now run:"
 echo -e "  ${BOLD}claude-code-launcher.sh${RESET}"
 
 # ─────
