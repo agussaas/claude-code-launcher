@@ -13,8 +13,6 @@ curl -fsSL https://raw.githubusercontent.com/agussaas/claude-code-launcher/main/
 After installation, run:
 
 ```bash
-claude-code-launcher
-# or
 claude-code-launcher.sh
 ```
 
@@ -24,6 +22,24 @@ claude-code-launcher.sh
 - Quick default mode or step-by-step setup
 - Predefined API profiles
 - Runs `claude-code-init.sh` before launch to skip onboarding
+
+## How It Works
+
+This launcher uses **environment variables** to configure Claude Code at runtime:
+
+| Variable | Purpose |
+|----------|---------|
+| `ANTHROPIC_BASE_URL` | API endpoint URL |
+| `ANTHROPIC_API_KEY` / `ANTHROPIC_AUTH_TOKEN` | Authentication |
+| `ANTHROPIC_MODEL` | Model to use |
+| `ANTHROPIC_*_MODEL` | Override all model variants |
+
+**Important:** This approach:
+- Does **NOT** modify your `~/.claude/settings.json` file
+- Settings are **temporary** — only apply to the current Claude session
+- Each run prompts you to choose provider/key/model again (or use defaults)
+
+This is useful if you want to quickly switch between different API providers without changing your permanent Claude Code configuration.
 
 ## Configuration
 
