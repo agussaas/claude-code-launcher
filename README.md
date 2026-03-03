@@ -34,8 +34,8 @@ This launcher uses **environment variables** to configure Claude Code at runtime
 | `ANTHROPIC_MODEL` | Model to use |
 | `ANTHROPIC_*_MODEL` | Override all model variants |
 
-**Important:** This approach:
-- Does **NOT** modify your `~/.claude/settings.json` file
+**Important:**
+- This approach does **NOT** modify your `~/.claude/settings.json` file
 - Settings are **temporary** — only apply to the current Claude session
 - Each run prompts you to choose provider/key/model again (or use defaults)
 
