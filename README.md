@@ -38,7 +38,7 @@ API_KEYS=(
 )
 ```
 
-**Do not run `claude-code-launcher.sh` until you have replaced the placeholder keys.**
+Do not run `claude-code-launcher.sh` until you have replaced the placeholder keys.
 
 ## Usage
 
