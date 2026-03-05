@@ -2,7 +2,7 @@
 
 A simple Bash script launcher for running Claude Code with third-party API providers (Zhipu AI, Kimi, Moonshot, MiniMax, Alibaba Cloud, OpenRouter, Synthetic).
 
-## Installation
+## Install
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/agussaas/claude-code-launcher/main/install.sh | bash
@@ -16,15 +16,29 @@ The install script performs the following steps:
 2. **Installs the launcher** to `~/.local/bin/claude-code-launcher.sh`
 3. **Verifies the installation** and checks if `~/.local/bin` is in your PATH
 
-### Important: Configure Before Using
+### Configure Before Using
 
-**Before running the launcher, you MUST edit the installed script to add your API keys.**
+Before running the launcher, you MUST edit the installed script to add your API keys.
 
 ```bash
 nano ~/.local/bin/claude-code-launcher.sh
 ```
 
-Replace the placeholder `<YOUR_API_KEY>` values in the `API_KEYS` section with your actual API keys from the respective providers.
+Find the `API_KEYS` section and replace all `<YOUR_API_KEY>` placeholders with your actual API keys:
+
+```bash
+API_KEYS=(
+  "Zhipu AI:<YOUR_API_KEY>"
+  "Kimi Code:<YOUR_API_KEY>"
+  "Moonshot:<YOUR_API_KEY>"
+  "MiniMax:<YOUR_API_KEY>"
+  "Alibaba Cloud:<YOUR_API_KEY>"
+  "OpenRouter:<YOUR_API_KEY>"
+  "Synthetic:<YOUR_API_KEY>"
+)
+```
+
+**Do not run `claude-code-launcher.sh` until you have replaced the placeholder keys.**
 
 ## Usage
 
@@ -33,6 +47,23 @@ After installation, run:
 ```bash
 claude-code-launcher.sh
 ```
+
+## Uninstall
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/agussaas/claude-code-launcher/main/uninstall.sh | bash
+```
+
+### What the Uninstaller Does
+
+The uninstall script performs the following steps:
+
+1. **Checks for the launcher** at `~/.local/bin/claude-code-launcher.sh`
+2. **Confirms removal** with you before proceeding
+3. **Removes the launcher** from your system
+4. **Verifies the removal** was successful
+
+**Note:** Your Claude Code settings at `~/.claude.json` are not modified.
 
 ## Features
 
@@ -137,6 +168,7 @@ DEFAULT_MODEL=1
 | File | Description |
 |------|-------------|
 | `install.sh` | One-line installer |
+| `uninstall.sh` | Removes the launcher |
 | `src/claude-code-init.sh` | Sets `hasCompletedOnboarding: true` |
 | `src/claude-code-launcher.sh` | Main launcher with API profiles |
 
