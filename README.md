@@ -8,6 +8,24 @@ A simple Bash script launcher for running Claude Code with third-party API provi
 curl -fsSL https://raw.githubusercontent.com/agussaas/claude-code-launcher/main/install.sh | bash
 ```
 
+### What the Installer Does
+
+The install script performs the following steps:
+
+1. **Runs the onboarding skip script** (`claude-code-init.sh`) - Sets `hasCompletedOnboarding: true` in your Claude Code settings so you won't be prompted with the onboarding flow
+2. **Installs the launcher** to `~/.local/bin/claude-code-launcher.sh`
+3. **Verifies the installation** and checks if `~/.local/bin` is in your PATH
+
+### Important: Configure Before Using
+
+**Before running the launcher, you MUST edit the installed script to add your API keys.**
+
+```bash
+nano ~/.local/bin/claude-code-launcher.sh
+```
+
+Replace the placeholder `<YOUR_API_KEY>` values in the `API_KEYS` section with your actual API keys from the respective providers.
+
 ## Usage
 
 After installation, run:
