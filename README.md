@@ -40,14 +40,6 @@ API_KEYS=(
 
 Do not run `claude-code-launcher.sh` until you have replaced the placeholder keys.
 
-## Usage
-
-After installation, run:
-
-```bash
-claude-code-launcher.sh
-```
-
 ## Uninstall
 
 ```bash
@@ -64,6 +56,14 @@ The uninstall script performs the following steps:
 4. **Verifies the removal** was successful
 
 **Note:** Your Claude Code settings at `~/.claude.json` are not modified.
+
+## Usage
+
+After installation, run:
+
+```bash
+claude-code-launcher.sh
+```
 
 ## Features
 
