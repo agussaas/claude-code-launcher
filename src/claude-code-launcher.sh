@@ -232,5 +232,8 @@ fi
 export API_TIMEOUT_MS="3000000"
 export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
 export CLAUDE_CODE_DISABLE_AUTOUPDATES=1
+# Disable co-authored attribution for git commits
+# See: https://code.claude.com/docs/en/settings#attribution-settings
+export CLAUDE_CODE_ATTRIBUTION='{"commit": "", "pr": ""}'
 
 claude
