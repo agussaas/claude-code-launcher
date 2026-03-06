@@ -172,6 +172,29 @@ DEFAULT_MODEL=1
 | `src/claude-code-init.sh` | Sets `hasCompletedOnboarding: true` |
 | `src/claude-code-launcher.sh` | Main launcher with API profiles |
 
+## Alternative Tools (Recommended)
+
+Replace Claude Code's built-in tools with these better alternatives:
+
+| Tool | Replaces | Why Use It |
+|------|----------|------------|
+| [Firecrawl](https://www.firecrawl.dev) | WebFetch/WebSearch | Better scraping, handles JS sites, clean markdown output |
+| [Context7](https://context7.com) | Docs lookup | Up-to-date docs for 3570+ libraries, version-specific |
+| [Brave Search API](https://brave.com/search/api) | WebSearch | Privacy-focused, high-quality results |
+
+Install via Claude CLI:
+
+```bash
+# Firecrawl
+claude mcp add firecrawl -e FIRECRAWL_API_KEY=your-api-key -- npx -y firecrawl-mcp
+
+# Context7
+claude mcp add --scope user context7 -- npx -y @upstash/context7-mcp --api-key YOUR_API_KEY
+
+# Brave Search
+claude mcp add-json brave-search '{"command":"npx","args":["-y","@modelcontextprotocol/server-brave-search"],"env":{"BRAVE_API_KEY":"YOUR_ACTUAL_KEY_HERE"}}'
+```
+
 ## Requirements
 
 - Bash
