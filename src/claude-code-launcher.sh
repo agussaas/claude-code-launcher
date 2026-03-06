@@ -202,7 +202,7 @@ fi
 echo -e "\n${CYAN}${BOLD}Configuration${RESET}"
 echo -e "  ${BOLD}PROVIDER :${RESET} $PROVIDER"
 echo -e "  ${BOLD}BASE URL :${RESET} $BASE_URL"
-echo -e "  ${BOLD}API KEY  :${RESET} ${API_KEY:0:8}"
+echo -e "  ${BOLD}API KEY  :${RESET} ${API_KEY:0:16}"
 echo -e "  ${BOLD}MODEL    :${RESET} $MODEL"
 
 read -rp $'\nProceed? [Y/n]: ' confirm
