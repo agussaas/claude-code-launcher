@@ -71,9 +71,9 @@ fi
 echo -e "${CYAN}[1/3] Running initialization...${RESET}"
 if [ -f "$SRC_DIR/claude-code-init.sh" ]; then
     bash "$SRC_DIR/claude-code-init.sh"
-    echo -e "  ${GREEN}✓ Initialization complete${RESET}"
+    echo -e "  ${GREEN}[OK] Initialization complete${RESET}"
 else
-    echo -e "  ${YELLOW}⚠ Init script not found, skipping${RESET}"
+    echo -e "  ${YELLOW}[WARN] Init script not found, skipping${RESET}"
 fi
 
 # ───────────────
@@ -83,9 +83,9 @@ echo -e "\n${CYAN}[2/3] Installing launcher to $INSTALL_DIR...${RESET}"
 if [ -f "$SRC_DIR/claude-code-launcher.sh" ]; then
     cp "$SRC_DIR/claude-code-launcher.sh" "$INSTALL_DIR/$LAUNCHER_NAME"
     chmod +x "$INSTALL_DIR/$LAUNCHER_NAME"
-    echo -e "  ${GREEN}✓ Installed: $INSTALL_DIR/$LAUNCHER_NAME${RESET}"
+    echo -e "  ${GREEN}[OK] Installed: $INSTALL_DIR/$LAUNCHER_NAME${RESET}"
 else
-    echo -e "  ${RED}✗ Launcher script not found${RESET}"
+    echo -e "  ${RED}[FAIL] Launcher script not found${RESET}"
     exit 1
 fi
 
@@ -94,9 +94,9 @@ fi
 # ───────
 echo -e "\n${CYAN}[3/3] Verifying installation...${RESET}"
 if [ -x "$INSTALL_DIR/$LAUNCHER_NAME" ]; then
-    echo -e "  ${GREEN}✓ Installation successful!${RESET}"
+    echo -e "  ${GREEN}[OK] Installation successful!${RESET}"
 else
-    echo -e "  ${RED}✗ Installation failed${RESET}"
+    echo -e "  ${RED}[FAIL] Installation failed${RESET}"
     exit 1
 fi
 

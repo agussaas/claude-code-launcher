@@ -24,7 +24,7 @@ echo -e "${CYAN}${BOLD}Claude Code Launcher Uninstaller${RESET}\n"
 #  Check Installation
 # ───────────────────
 if [ ! -f "$INSTALL_DIR/$LAUNCHER_NAME" ]; then
-    echo -e "${YELLOW}⚠ Launcher not found at $INSTALL_DIR/$LAUNCHER_NAME${RESET}"
+    echo -e "${YELLOW}[WARN] Launcher not found at $INSTALL_DIR/$LAUNCHER_NAME${RESET}"
     echo -e "Nothing to uninstall.\n"
     exit 0
 fi
@@ -46,9 +46,9 @@ fi
 # ────────────────
 echo -e "\n${CYAN}[1/3] Removing launcher...${RESET}"
 if rm -f "$INSTALL_DIR/$LAUNCHER_NAME"; then
-    echo -e "  ${GREEN}✓ Removed: $INSTALL_DIR/$LAUNCHER_NAME${RESET}"
+    echo -e "  ${GREEN}[OK] Removed: $INSTALL_DIR/$LAUNCHER_NAME${RESET}"
 else
-    echo -e "  ${RED}✗ Failed to remove launcher${RESET}"
+    echo -e "  ${RED}[FAIL] Failed to remove launcher${RESET}"
     exit 1
 fi
 
@@ -57,15 +57,15 @@ fi
 # ───────
 echo -e "\n${CYAN}[2/3] Verifying uninstall...${RESET}"
 if [ ! -f "$INSTALL_DIR/$LAUNCHER_NAME" ]; then
-    echo -e "  ${GREEN}✓ Uninstall successful!${RESET}"
+    echo -e "  ${GREEN}[OK] Uninstall successful!${RESET}"
 else
-    echo -e "  ${RED}✗ Uninstall failed${RESET}"
+    echo -e "  ${RED}[FAIL] Uninstall failed${RESET}"
     exit 1
 fi
 
-# ───────────────────────────
+# ─────────────────────────
 #  Reset Onboarding Setting
-# ───────────────────────────
+# ─────────────────────────
 echo -e "\n${CYAN}[3/3] Resetting onboarding setting...${RESET}"
 node --eval "
     const os = require('os');
@@ -78,6 +78,6 @@ node --eval "
         content.hasCompletedOnboarding = false;
         fs.writeFileSync(filePath, JSON.stringify(content, null, 2), 'utf-8');
         console.log('  Reset hasCompletedOnboarding to false in ~/.claude.json');
-    }" 2>/dev/null || echo -e "  ${YELLOW}⚠ Could not reset onboarding setting (Node.js not available)${RESET}"
+    }" 2>/dev/null || echo -e "  ${YELLOW}[WARN] Could not reset onboarding setting (Node.js not available)${RESET}"
 
 echo -e "${GREEN}${BOLD}Uninstall Complete!${RESET}\n"
