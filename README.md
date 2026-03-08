@@ -54,8 +54,7 @@ The uninstall script performs the following steps:
 2. **Confirms removal** with you before proceeding
 3. **Removes the launcher** from your system
 4. **Verifies the removal** was successful
-
-**Note:** Your Claude Code settings at `~/.claude.json` are not modified.
+5. **Resets onboarding** - Sets `hasCompletedOnboarding: false` in your Claude Code settings so the onboarding flow will be shown again on next run
 
 ## Usage
 

@@ -44,7 +44,7 @@ fi
 # ────────────────
 #  Remove Launcher
 # ────────────────
-echo -e "\n${CYAN}[1/2] Removing launcher...${RESET}"
+echo -e "\n${CYAN}[1/3] Removing launcher...${RESET}"
 if rm -f "$INSTALL_DIR/$LAUNCHER_NAME"; then
     echo -e "  ${GREEN}✓ Removed: $INSTALL_DIR/$LAUNCHER_NAME${RESET}"
 else
@@ -55,7 +55,7 @@ fi
 # ───────
 #  Verify
 # ───────
-echo -e "\n${CYAN}[2/2] Verifying uninstall...${RESET}"
+echo -e "\n${CYAN}[2/3] Verifying uninstall...${RESET}"
 if [ ! -f "$INSTALL_DIR/$LAUNCHER_NAME" ]; then
     echo -e "  ${GREEN}✓ Uninstall successful!${RESET}"
 else
@@ -63,10 +63,21 @@ else
     exit 1
 fi
 
-# ─────────────
-#  Cleanup Note
-# ─────────────
-echo -e "\n${YELLOW}Note:${RESET} Your Claude Code settings at ${BOLD}~/.claude.json${RESET} were not modified."
-echo -e "If you want to remove the onboarding skip setting, edit that file manually.\n"
+# ───────────────────────────
+#  Reset Onboarding Setting
+# ───────────────────────────
+echo -e "\n${CYAN}[3/3] Resetting onboarding setting...${RESET}"
+node --eval "
+    const os = require('os');
+    const path = require('path');
+    const fs = require('fs');
+    const homeDir = os.homedir();
+    const filePath = path.join(homeDir, '.claude.json');
+    if (fs.existsSync(filePath)) {
+        const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        content.hasCompletedOnboarding = false;
+        fs.writeFileSync(filePath, JSON.stringify(content, null, 2), 'utf-8');
+        console.log('  Reset hasCompletedOnboarding to false in ~/.claude.json');
+    }" 2>/dev/null || echo -e "  ${YELLOW}⚠ Could not reset onboarding setting (Node.js not available)${RESET}"
 
 echo -e "${GREEN}${BOLD}Uninstall Complete!${RESET}\n"
